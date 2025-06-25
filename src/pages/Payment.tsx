@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { CreditCard, Smartphone, CheckCircle } from 'lucide-react';
-import QRCodeReact from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 import Header from '../components/Header';
 import { useCart } from '../contexts/CartContext';
 
@@ -63,7 +62,7 @@ const Payment = () => {
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-4">Your Digital Receipt</h3>
               <div className="bg-white p-4 rounded-lg border-2 border-dashed border-gray-300">
-                <QRCodeReact
+                <QRCodeSVG
                   value={`Bill ID: ${billId}\nAmount: ${formatPrice(getTotalPrice())}\nDate: ${new Date().toLocaleDateString()}`}
                   size={200}
                   className="mx-auto"
