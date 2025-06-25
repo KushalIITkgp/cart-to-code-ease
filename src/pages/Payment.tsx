@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { CreditCard, Smartphone, CheckCircle } from 'lucide-react';
-import QRCode from 'qrcode.react';
+import { QRCode } from 'qrcode.react';
 import Header from '../components/Header';
 import { useCart } from '../contexts/CartContext';
 
