@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { useCart } from '../contexts/CartContext';
 
 const Payment = () => {
-  const { getTotalPrice, clearCart } = useCart();
+  const { getTotalPrice, clearCart, items } = useCart();
   const [selectedMethod, setSelectedMethod] = useState('');
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [billId, setBillId] = useState('');
@@ -24,6 +24,25 @@ const Payment = () => {
       setPaymentSuccess(true);
       clearCart();
     }, 2000);
+  };
+
+  const generateBillData = () => {
+    const billData = {
+      billId: billId,
+      amount: formatPrice(getTotalPrice()),
+      date: new Date().toLocaleDateString('en-IN'),
+      time: new Date().toLocaleTimeString('en-IN'),
+      items: items.map(item => ({
+        name: item.name,
+        quantity: item.quantity,
+        price: formatPrice(item.price),
+        total: formatPrice(item.price * item.quantity)
+      })),
+      totalAmount: formatPrice(getTotalPrice()),
+      paymentMethod: selectedMethod === 'upi' ? 'UPI Payment' : 'Credit/Debit Card'
+    };
+    
+    return JSON.stringify(billData, null, 2);
   };
 
   const paymentMethods = [
@@ -63,7 +82,7 @@ const Payment = () => {
               <h3 className="text-lg font-semibold mb-4">Your Digital Receipt</h3>
               <div className="bg-white p-4 rounded-lg border-2 border-dashed border-gray-300">
                 <QRCodeSVG
-                  value={`Bill ID: ${billId}\nAmount: ${formatPrice(getTotalPrice())}\nDate: ${new Date().toLocaleDateString()}`}
+                  value={generateBillData()}
                   size={200}
                   className="mx-auto"
                 />
