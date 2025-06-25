@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Welcome to your Smart Cart
 
 ## Project info
 
@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b834890f-de67-49ae-8c96-78599caaa14e) and start prompting.
+Visit the [Lovable Project](https://lovable.dev/projects/b834890f-de67-49ae-8c96-78599caaa14e) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -40,7 +40,7 @@ npm run dev
 
 - Navigate to the desired file(s).
 - Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Make your changes and commit the.
 
 **Use GitHub Codespaces**
 
@@ -60,14 +60,5 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/b834890f-de67-49ae-8c96-78599caaa14e) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
