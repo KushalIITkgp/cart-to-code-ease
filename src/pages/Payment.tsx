@@ -9,6 +9,8 @@ const Payment = () => {
   const [selectedMethod, setSelectedMethod] = useState('');
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [billId, setBillId] = useState('');
+  const [paidAmount, setPaidAmount] = useState(0);
+  const [billItems, setBillItems] = useState<any[]>([]);
 
   const formatPrice = (price: number) => {
     return `₹${(price / 100).toFixed(2)}`;
@@ -17,10 +19,16 @@ const Payment = () => {
   const handlePayment = () => {
     if (!selectedMethod) return;
     
+    // Store the current cart data before clearing
+    const currentTotal = getTotalPrice();
+    const currentItems = [...items];
+    
     // Simulate payment processing
     setTimeout(() => {
       const newBillId = `BILL-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       setBillId(newBillId);
+      setPaidAmount(currentTotal);
+      setBillItems(currentItems);
       setPaymentSuccess(true);
       clearCart();
     }, 2000);
@@ -29,16 +37,16 @@ const Payment = () => {
   const generateBillData = () => {
     const billData = {
       billId: billId,
-      amount: formatPrice(getTotalPrice()),
+      amount: formatPrice(paidAmount),
       date: new Date().toLocaleDateString('en-IN'),
       time: new Date().toLocaleTimeString('en-IN'),
-      items: items.map(item => ({
+      items: billItems.map(item => ({
         name: item.name,
         quantity: item.quantity,
         price: formatPrice(item.price),
         total: formatPrice(item.price * item.quantity)
       })),
-      totalAmount: formatPrice(getTotalPrice()),
+      totalAmount: formatPrice(paidAmount),
       paymentMethod: selectedMethod === 'upi' ? 'UPI Payment' : 'Credit/Debit Card'
     };
     
@@ -75,7 +83,7 @@ const Payment = () => {
             
             <div className="bg-gray-50 p-4 rounded-lg mb-6">
               <p className="text-sm text-gray-600 mb-2">Bill ID: {billId}</p>
-              <p className="text-lg font-semibold text-green-600">Amount Paid: {formatPrice(getTotalPrice())}</p>
+              <p className="text-lg font-semibold text-green-600">Amount Paid: {formatPrice(paidAmount)}</p>
             </div>
 
             <div className="mb-6">
