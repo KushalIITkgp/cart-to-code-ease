@@ -16,8 +16,11 @@ const Header = () => {
     <header className="bg-white shadow-lg border-b-2 border-blue-100">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold text-blue-600">
-            SmartCart
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">SC</span>
+            </div>
+            <span className="text-2xl font-bold text-blue-600">SmartCart</span>
           </Link>
           
           <div className="flex items-center space-x-6">
